@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  rust: circleci/rust@1.6.2
 jobs:
   build:
     docker:
@@ -7,9 +9,10 @@ jobs:
       RB_SYS_FORCE_INSTALL_RUST_TOOLCHAIN: 'true'
     steps:
       - checkout
+      - rust/install
       - run:
           name: Install Rust/Cargo dependencies
-          command: apt-get update && apt-get install -y clang cargo
+          command: apt-get update && apt-get install -y clang
       - run:
           name: Install a RubyGems version that can compile rust extensions
           command: gem update --system '3.6.2'
@@ -19,3 +22,4 @@ jobs:
             gem install bundler -v 2.6.3
             bundle install
             bundle exec rake
+      - rust/clippy
