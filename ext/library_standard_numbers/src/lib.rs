@@ -1,12 +1,15 @@
 use magnus::{function, prelude::*, Error, Ruby};
+use library_stdnums::lccn::LCCN;
+use library_stdnums::traits::Valid;
 
-fn hello(subject: String) -> String {
-    format!("Hello from Rust, {subject}!")
+fn lccn_validate(identifier: String) -> bool {
+    LCCN::new(identifier).valid()
 }
 
 #[magnus::init]
 fn init(ruby: &Ruby) -> Result<(), Error> {
     let module = ruby.define_module("LibraryStandardNumbers")?;
-    module.define_singleton_method("hello", function!(hello, 1))?;
+    let lccn_module = module.define_module("LCCN")?;
+    lccn_module.define_singleton_method("valid?", function!(lccn_validate, 1))?;
     Ok(())
 }

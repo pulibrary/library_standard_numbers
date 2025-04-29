@@ -10,4 +10,5 @@ publish = false
 crate-type = ["cdylib"]
 
 [dependencies]
+library_stdnums = "0.1.0"
 magnus = { version = "0.6.2" }
