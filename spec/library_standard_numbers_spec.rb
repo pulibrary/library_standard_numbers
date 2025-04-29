@@ -9,4 +9,7 @@ RSpec.describe LibraryStandardNumbers do
     expect(LibraryStandardNumbers::LCCN.valid?("n78-890351")).to be true
     expect(LibraryStandardNumbers::LCCN.valid?("n78-89035100444")).to be false
   end
+  it "validates ISBNs" do
+    expect(LibraryStandardNumbers::ISBN.valid?("9781449373320")).to be true
+  end
 end
