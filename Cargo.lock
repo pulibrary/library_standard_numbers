@@ -116,8 +116,15 @@ dependencies = [
 name = "library_standard_numbers"
 version = "0.1.0"
 dependencies = [
+ "library_stdnums",
  "magnus",
 ]
+
+[[package]]
+name = "library_stdnums"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ff45009282f541df36b35638ca06f8ecc0c7154fe380ad79e279660e7c1d758c"
 
 [[package]]
 name = "magnus"

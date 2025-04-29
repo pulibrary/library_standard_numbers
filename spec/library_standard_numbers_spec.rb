@@ -5,8 +5,8 @@ RSpec.describe LibraryStandardNumbers do
     expect(LibraryStandardNumbers::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    pending("Doing something useful")
-    expect(false).to eq(true)
+  it "validates LCCNs" do
+    expect(LibraryStandardNumbers::LCCN.valid?("n78-890351")).to be true
+    expect(LibraryStandardNumbers::LCCN.valid?("n78-89035100444")).to be false
   end
 end
