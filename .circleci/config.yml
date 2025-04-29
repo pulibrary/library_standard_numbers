@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: Install Rust/Cargo dependencies
-          command: apt-get update && apt-get install -y clang
+          command: apt-get update && apt-get install -y clang cargo
       - run:
           name: Install a RubyGems version that can compile rust extensions
           command: gem update --system '3.6.2'
