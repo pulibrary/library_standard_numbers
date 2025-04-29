@@ -15,6 +15,9 @@ fn isbn_validate(identifier: String) -> bool {
     ISBN::new(identifier).valid()
 }
 
+fn isbn_normalize(identifier: String) -> Option<String> {
+    ISBN::new(identifier).normalize()
+}
 #[magnus::init]
 fn init(ruby: &Ruby) -> Result<(), Error> {
     let module = ruby.define_module("LibraryStandardNumbers")?;
@@ -35,6 +38,7 @@ fn create_lccn_module(module: &RModule) -> Result<(), Error> {
 fn create_isbn_module(module: &RModule) -> Result<(), Error> {
     let isbn_module = module.define_module("ISBN")?;
     isbn_module.define_singleton_method("valid?", function!(isbn_validate, 1))?;
+    isbn_module.define_singleton_method("normalize", function!(isbn_normalize, 1))?;
 
     Ok(())
 }
